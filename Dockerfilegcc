@@ -1,0 +1,8 @@
+FROM ubuntu
+ADD hello.c .
+RUN apt-get clean && apt-get update
+RUN apt install -qy build-essential
+RUN gcc hello.c -S -o file.S
+RUN gcc -c file.S -o file.o
+RUN gcc file.o -o file
+CMD ./file
